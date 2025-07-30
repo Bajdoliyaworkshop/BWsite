@@ -42,6 +42,7 @@ connectDB();
 // Routes
 app.get('/', (req, res) => res.send('Server is running'));
 app.use('/api/newsletter', require('./routes/newsletterRoutes'));
+app.use('/api/user', require('./routes/userRoutes'));
 // Error Handling
 app.use((err, req, res, next) => {
   console.error(err.stack);
