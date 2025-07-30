@@ -1,0 +1,60 @@
+import axios from 'axios'
+
+const API_URL = import.meta.env.VITE_API_URL
+
+export const getServices = async () => {
+  const response = await axios.get(`${API_URL}/api/services`)
+  return response.data
+};
+
+export const bookService = async (bookingData) => {
+  const token = localStorage.getItem('token')
+  try {
+    const response = await axios.post(`${API_URL}/api/services/book`, bookingData, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    return response.data
+  } catch (err) {
+    // Return the error response data if available
+    throw err.response?.data || { message: 'Failed to book service' }
+  }
+};
+
+export const getUserBookings = async () => {
+  const token = localStorage.getItem('token');
+  const response = await axios.get(`${API_URL}/api/user/bookings`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
+};
+
+export const cancelService = async (serviceId) => {
+  const token = localStorage.getItem('token');
+  try {
+    const response = await axios.delete(`${API_URL}/api/services/cancel/${serviceId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return response.data;
+  } catch (err) {
+    // Return the error response data if available
+    throw err.response?.data || { message: 'Failed to cancel service' };
+  }
+};
+
+// api for newsletter subscribe
+export const subscribeNewsletter = async (email) => {
+  const response = await axios.post(`${API_URL}/api/newsletter/`, { email });
+  return response.data;
+  };
+
+//api for verify newsletter subscription
+export const verifyNewsletter = async (token) => {
+  const response = await axios.get(`${API_URL}/api/newsletter/verify/${token}`); 
+  return response.data;
+  };
