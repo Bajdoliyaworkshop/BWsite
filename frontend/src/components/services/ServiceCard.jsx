@@ -54,7 +54,7 @@ export default function ServiceCard({
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 md:mb-4 gap-2 md:gap-3">
           <div className="flex items-center">
             <FaRupeeSign className="text-red-500 mr-1 flex-shrink-0 text-sm md:text-base" />
-            <span className="text-base md:text-lg font-bold text-gray-800">₹{service.price.toFixed(2)}</span>
+            <span className="text-base md:text-lg font-bold text-gray-800">{service.price.toFixed(2)}</span>
           </div>
           <div className="flex items-center text-gray-500 text-xs md:text-sm">
             <FaClock className="mr-1 text-red-400 flex-shrink-0 text-sm md:text-base" />
