@@ -483,7 +483,7 @@ const mobileImages = [
                 <div className="flex items-center mb-2">
                   <FaMapMarkerAlt className="text-red-200 mr-2" />
                   <span className="text-red-100 text-sm">
-                    B152, Vidhan Shaba Nagar, Jaipur
+                    B153, Vidhan Shaba Nagar, Jaipur
                   </span>
                 </div>
                 <div className="flex items-center">

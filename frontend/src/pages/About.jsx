@@ -265,7 +265,7 @@ const About = () => {
                 <div>
                   <h4 className="font-medium">Our Location</h4>
                   <p className="text-gray-300 text-sm">
-                    B152, Vidhan Shaba Nagar T Point, Dhalai, Jaipur - 302020
+                    B153, Vidhan Shaba Nagar T Point, Dholai, Jaipur - 302020
                   </p>
                 </div>
               </div>
@@ -313,12 +313,12 @@ const About = () => {
                 <div>
                   <h4 className="font-medium">Bajdoliya Workshop</h4>
                   <p className="text-gray-300 text-sm">
-                    B152, Vidhan Shaba Nagar T Point<br />
-                    Dhalai, Jaipur - 302020<br />
+                    B153, Vidhan Shaba Nagar T Point<br />
+                    Dholai, Jaipur - 302020<br />
                     Near Patrakar Colony
                   </p>
                   <p className="text-gray-300 text-sm mt-2">
-                    <strong>Hours:</strong> Mon-Sat 8AM-8PM | Sun 10AM-4PM
+                    <strong>Hours:</strong> Monday-Sunday: 09:30AM-07:30PM
                   </p>
                 </div>
               </div>

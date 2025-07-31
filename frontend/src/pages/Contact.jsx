@@ -265,7 +265,7 @@ const Contact = () => {
                   <FaMapMarkerAlt className="text-red-600 mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h4 className="font-medium text-gray-900">Workshop Address</h4>
-                    <p className="text-gray-600">B152, Vidhan Shaba Nagar T Point, Dhalai, Jaipur, Patrakar Colony, Jaipur - 302020 (Near Patrakar Colony)</p>
+                    <p className="text-gray-600">B153, Vidhan Shaba Nagar T Point, Dholai, Jaipur, Patrakar Colony, Jaipur - 302020 (Near Patrakar Colony)</p>
                   </div>
                 </div>
 
@@ -293,8 +293,7 @@ const Contact = () => {
                   <FaOilCan className="text-red-600 mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h4 className="font-medium text-gray-900">Working Hours</h4>
-                    <p className="text-gray-600">Monday - Saturday: 8:00 AM - 8:00 PM</p>
-                    <p className="text-gray-600">Sunday: 10:00 AM - 4:00 PM</p>
+                    <p className="text-gray-600">Monday - Sunday: 09:30 AM - 07:30 PM</p>
                   </div>
                 </div>
               </div>
