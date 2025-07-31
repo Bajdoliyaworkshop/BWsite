@@ -147,7 +147,7 @@ export default function Footer() {
               <li className="flex items-start">
                 <FaClock className="text-red-600 mt-0.5 mr-3 flex-shrink-0 text-sm sm:text-base" />
                 <span className="text-gray-600 text-sm sm:text-base">
-                  Mon-Sat: 09:00 AM - 07:30 PM
+                  Mon-Sat: 09:30 AM - 07:30 PM
                 </span>
               </li>
             </ul>
