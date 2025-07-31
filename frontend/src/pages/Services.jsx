@@ -2,14 +2,12 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
 import * as bookingService from '../services/booking';
-import * as cartService from '../services/cart';
 import { toast } from 'react-toastify';
 import ServiceCard from '../components/services/ServiceCard';
 import { 
   FaCar, 
   FaCalendarAlt, 
   FaSpinner, 
-  FaShoppingCart,
   FaOilCan,
   FaCarBattery,
   FaCarCrash,
@@ -27,7 +25,6 @@ export default function Services() {
   const [date, setDate] = useState('');
   const [loading, setLoading] = useState(true);
   const [isBooking, setIsBooking] = useState(false);
-  const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [activeService, setActiveService] = useState(null);
 
   useEffect(() => {
@@ -95,29 +92,6 @@ export default function Services() {
     }
   };
 
-  const handleAddToCart = async (serviceId) => {
-    if (!user) {
-      toast.error('Please login to add to cart');
-      return;
-    }
-    
-    try {
-      setIsAddingToCart(true);
-      setActiveService(serviceId);
-      const service = services.find(s => s._id === serviceId);
-      
-      await cartService.addToCart(serviceId);
-      toast.success(`${service.name} added to cart!`);
-    } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Failed to add to cart';
-      toast.error(errorMessage);
-      console.error('Add to cart error:', err);
-    } finally {
-      setIsAddingToCart(false);
-      setActiveService(null);
-    }
-  };
-
   if (loading) {
     return (
       <motion.div 
@@ -145,18 +119,18 @@ export default function Services() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="text-center mb-12"
+        className="text-center mb-8 md:mb-12"
       >
         <div className="flex items-center justify-center mb-4">
-          <div className="bg-red-600 p-4 rounded-full text-white shadow-lg">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 p-4 rounded-full text-white shadow-lg">
             <GiCarKey className="text-3xl" />
           </div>
         </div>
         <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
           Our <span className="text-red-600">Premium</span> Services
         </h1>
-        <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-          Expert car care solutions with Bajdoliya's signature red carpet service
+        <p className="mt-3 text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+          Expert car care solutions with our signature red carpet service
         </p>
       </motion.div>
 
@@ -166,32 +140,32 @@ export default function Services() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="bg-white p-6 rounded-xl shadow-lg mb-10 border border-gray-200"
+          className="bg-white p-5 md:p-6 rounded-xl shadow-lg mb-8 md:mb-10 border border-gray-200"
         >
-          <div className="flex items-center mb-6">
-            <div className="bg-red-100 p-3 rounded-full mr-4 text-red-600">
-              <FaCalendarAlt className="text-xl" />
+          <div className="flex items-center mb-5 md:mb-6">
+            <div className="bg-red-100 p-2 md:p-3 rounded-full mr-3 md:mr-4 text-red-600">
+              <FaCalendarAlt className="text-lg md:text-xl" />
             </div>
-            <h2 className="text-xl font-semibold text-gray-800">
+            <h2 className="text-lg md:text-xl font-semibold text-gray-800">
               Schedule Your Service
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <div>
-              <label className="block text-gray-700 mb-3 font-medium">
+              <label className="block text-gray-700 mb-2 md:mb-3 font-medium">
                 <div className="flex items-center">
-                  <div className="bg-red-100 p-2 rounded-full mr-3 text-red-600">
-                    <FaCarSide />
+                  <div className="bg-red-100 p-1 md:p-2 rounded-full mr-2 md:mr-3 text-red-600">
+                    <FaCarSide className="text-sm md:text-base" />
                   </div>
-                  Select Your Vehicle
+                  <span className="text-sm md:text-base">Select Your Vehicle</span>
                 </div>
               </label>
               <select 
                 value={selectedCar}
                 onChange={(e) => setSelectedCar(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
-                disabled={isBooking || isAddingToCart}
+                className="w-full p-2 md:p-3 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
+                disabled={isBooking}
               >
                 <option value="">Select Car</option>
                 {user.cars?.map(car => (
@@ -203,21 +177,21 @@ export default function Services() {
             </div>
             
             <div>
-              <label className="block text-gray-700 mb-3 font-medium">
+              <label className="block text-gray-700 mb-2 md:mb-3 font-medium">
                 <div className="flex items-center">
-                  <div className="bg-red-100 p-2 rounded-full mr-3 text-red-600">
-                    <FaCalendarAlt />
+                  <div className="bg-red-100 p-1 md:p-2 rounded-full mr-2 md:mr-3 text-red-600">
+                    <FaCalendarAlt className="text-sm md:text-base" />
                   </div>
-                  Preferred Date & Time
+                  <span className="text-sm md:text-base">Preferred Date & Time</span>
                 </div>
               </label>
               <input
                 type="datetime-local"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
+                className="w-full p-2 md:p-3 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
                 min={new Date().toISOString().slice(0, 16)}
-                disabled={isBooking || isAddingToCart}
+                disabled={isBooking}
               />
             </div>
           </div>
@@ -230,16 +204,16 @@ export default function Services() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="bg-white p-8 rounded-xl shadow-md text-center border border-gray-200"
+          className="bg-white p-6 md:p-8 rounded-xl shadow-md text-center border border-gray-200"
         >
-          <div className="bg-red-100 p-5 rounded-full inline-block mb-6">
-            <FaCarCrash className="text-4xl text-red-600" />
+          <div className="bg-red-100 p-4 md:p-5 rounded-full inline-block mb-4 md:mb-6">
+            <FaCarCrash className="text-3xl md:text-4xl text-red-600" />
           </div>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Our Services Are Coming Soon</h2>
-          <p className="text-gray-600 mb-6">We're preparing something special for your vehicle</p>
+          <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-3 md:mb-4">Our Services Are Coming Soon</h2>
+          <p className="text-gray-600 mb-4 md:mb-6 text-sm md:text-base">We're preparing something special for your vehicle</p>
           <button 
             onClick={() => window.location.reload()}
-            className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-colors"
+            className="px-4 py-2 md:px-6 md:py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-colors text-sm md:text-base"
           >
             Refresh Page
           </button>
@@ -249,7 +223,7 @@ export default function Services() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8"
         >
           {services.map((service, index) => (
             <motion.div
@@ -264,9 +238,8 @@ export default function Services() {
                 selectedCar={selectedCar}
                 date={date}
                 onBookNow={handleBookNow}
-                onAddToCart={handleAddToCart}
                 isBooking={isBooking && activeService === service._id}
-                isAddingToCart={isAddingToCart && activeService === service._id}
+                activeService={activeService}
                 icon={getServiceIcon(service.category || service.name)}
               />
             </motion.div>
