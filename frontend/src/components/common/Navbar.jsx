@@ -51,8 +51,8 @@ export default function Navbar() {
 
   return (
     <>
+    <nav className={`bg-white mt-0 pt-0 shadow-md sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2'}`}>
     <UpperNavbar />
-    <nav className={`bg-white shadow-md sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2'}`}>
 
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between items-center">
