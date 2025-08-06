@@ -4,9 +4,8 @@ import {
   FaMapMarkerAlt,
   FaClock,
   FaFacebook,
-  FaTwitter,
+  FaWhatsapp,
   FaInstagram,
-  FaLinkedin,
   FaCar,
   FaTools,
   FaShieldAlt,
@@ -79,8 +78,14 @@ export default function Footer() {
               <a href="https://www.facebook.com/" className="text-gray-500 hover:text-red-600 transition-colors">
                 <FaFacebook className="text-lg sm:text-xl" />
               </a>
-              <a href="https://www.x.com/" className="text-gray-500 hover:text-red-600 transition-colors">
-                <FaTwitter className="text-lg sm:text-xl" />
+              {/* WhatsApp Link */}
+              <a
+                href="https://wa.me/919314201111"
+                className="text-gray-500 hover:text-red-600 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaWhatsapp className="text-lg sm:text-xl" />
               </a>
               <a href="https://www.instagram.com/" className="text-gray-500 hover:text-red-600 transition-colors">
                 <FaInstagram className="text-lg sm:text-xl" />
