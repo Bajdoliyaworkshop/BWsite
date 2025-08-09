@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaPaperPlane, FaTools, FaCar, FaOilCan, FaWrench } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaPaperPlane, FaTools, FaCar, FaOilCan, FaWrench, FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const Contact = () => {
@@ -264,8 +264,16 @@ const Contact = () => {
                 <div className="flex items-start">
                   <FaMapMarkerAlt className="text-red-600 mt-1 mr-4 flex-shrink-0" />
                   <div>
-                    <h4 className="font-medium text-gray-900">Workshop Address</h4>
-                    <p className="text-gray-600">B153, Vidhan Shaba Nagar T Point, Dholai, Jaipur, Patrakar Colony, Jaipur - 302020 (Near Patrakar Colony)</p>
+                    <h4 className="font-medium text-gray-900">Address</h4>
+                    <a
+                    href="https://www.google.com/maps/place/Bajdoliya+Workshop+(Foam+Car+Wash)/@26.8412456,75.7446854,17z/data=!3m1!4b1!4m6!3m5!1s0x396db5ea05c93e09:0x860a04daca91e807!8m2!3d26.8412456!4d75.7472603!16s%2Fg%2F11j1hgngrh?entry=ttu&g_ep=EgoyMDI1MDgwNi4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-red-600 transition-colors"
+                  >
+                    B153, Vidhan Shaba Nagar T Point, Dholai, Patrakar Colony,
+                    Jaipur - 302020
+                  </a>
                   </div>
                 </div>
 
@@ -304,8 +312,8 @@ const Contact = () => {
                 <div className="flex space-x-4">
                   {[
                     { icon: <FaFacebook />, color: "hover:text-red-600", href: "https://www.facebook.com/" },
+                    { icon: <FaWhatsapp />, color: "hover:text-red-600", href: "https://wa.me/919314201111" },
                     { icon: <FaInstagram />, color: "hover:text-red-600", href: "https://www.instagram.com/" },
-                    { icon: <FaTwitter />, color: "hover:text-red-600", href: "https://x.com/" },
                   ].map((social, index) => (
                     <motion.a
                       key={index}
