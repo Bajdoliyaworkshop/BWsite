@@ -34,13 +34,16 @@ export default function Footer() {
 
       if (response.success) {
         setMessage({
-          text: response.message || "Thank you! Please check your email to confirm your subscription.",
+          text:
+            response.message ||
+            "Thank you! Please check your email to confirm your subscription.",
           type: "success",
         });
         setEmail("");
       } else {
         setMessage({
-          text: response.message || "Subscription failed. Please try again later.",
+          text:
+            response.message || "Subscription failed. Please try again later.",
           type: "error",
         });
       }
@@ -63,32 +66,41 @@ export default function Footer() {
           {/* About Section */}
           <div className="mb-6">
             <div className="flex items-center mb-4">
-              <img 
+              <img
                 src="https://gomechprod.blob.core.windows.net/gomech-retail/gomechanic_assets/category_icons_new/xxxhdpi/1.png"
                 alt="Bajdoliya Workshop Logo"
                 className="w-10 h-10 mr-3"
               />
-              <h3 className="text-xl font-bold text-gray-900">BAJDOLIYA WORKSHOP</h3>
+              <h3 className="text-xl font-bold text-gray-900">
+                BAJDOLIYA WORKSHOP
+              </h3>
             </div>
             <p className="text-gray-600 mb-4 text-sm sm:text-base">
-              Your trusted partner for premium car service at Bajdoliya Workshop. We deliver
-              excellence with every repair and maintenance service.
+              Your trusted partner for premium car service at Bajdoliya
+              Workshop. We deliver excellence with every repair and maintenance
+              service.
             </p>
             <div className="flex space-x-4">
-              <a href="https://www.facebook.com/" className="text-gray-500 hover:text-red-600 transition-colors">
-                <FaFacebook className="text-lg sm:text-xl" />
+              <a
+                href="https://www.facebook.com/"
+                className="text-gray-600 hover:text-red-600 transition-colors"
+              >
+                <FaFacebook className="text-lg sm:text-2xl" />
               </a>
               {/* WhatsApp Link */}
               <a
                 href="https://wa.me/919314201111"
-                className="text-gray-500 hover:text-red-600 transition-colors"
+                className="text-gray-600 hover:text-red-600 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaWhatsapp className="text-lg sm:text-xl" />
+                <FaWhatsapp className="text-lg sm:text-2xl" />
               </a>
-              <a href="https://www.instagram.com/" className="text-gray-500 hover:text-red-600 transition-colors">
-                <FaInstagram className="text-lg sm:text-xl" />
+              <a
+                href="https://www.instagram.com/"
+                className="text-gray-600 hover:text-red-600 transition-colors"
+              >
+                <FaInstagram className="text-lg sm:text-2xl" />
               </a>
             </div>
           </div>
@@ -100,53 +112,87 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2">
               <li>
-                <a href="/services" className="text-gray-600 hover:text-red-600 transition-colors flex items-center text-sm sm:text-base">
-                  <FaTools className="mr-2 text-red-600 flex-shrink-0" /> Services
+                <a
+                  href="/services"
+                  className="text-gray-600 hover:text-red-600 transition-colors flex items-center text-sm sm:text-base"
+                >
+                  <FaTools className="mr-2 text-red-600 flex-shrink-0" />{" "}
+                  Services
                 </a>
               </li>
               <li>
-                <a href="/login" className="text-gray-600 hover:text-red-600 transition-colors flex items-center text-sm sm:text-base">
-                  <FaCar className="mr-2 text-red-600 flex-shrink-0" /> Book Appointment
+                <a
+                  href="/login"
+                  className="text-gray-600 hover:text-red-600 transition-colors flex items-center text-sm sm:text-base"
+                >
+                  <FaCar className="mr-2 text-red-600 flex-shrink-0" /> Book
+                  Appointment
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-red-600 transition-colors flex items-center text-sm sm:text-base">
-                  <FaShieldAlt className="mr-2 text-red-600 flex-shrink-0" /> Warranty
+                <a
+                  href="#"
+                  className="text-gray-600 hover:text-red-600 transition-colors flex items-center text-sm sm:text-base"
+                >
+                  <FaShieldAlt className="mr-2 text-red-600 flex-shrink-0" />{" "}
+                  Warranty
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-red-600 transition-colors flex items-center text-sm sm:text-base">
-                  <FaTools className="mr-2 text-red-600 flex-shrink-0" /> Maintenance Packages
+                <a
+                  href="#"
+                  className="text-gray-600 hover:text-red-600 transition-colors flex items-center text-sm sm:text-base"
+                >
+                  <FaTools className="mr-2 text-red-600 flex-shrink-0" />{" "}
+                  Maintenance Packages
                 </a>
               </li>
             </ul>
           </div>
 
           {/* Contact Info */}
+
           <div className="mb-6">
             <h3 className="text-lg font-semibold mb-4 border-b border-gray-300 pb-2 text-gray-900">
               Contact Us
             </h3>
             <ul className="space-y-3">
               <li className="flex items-start">
-                <FaPhone className="text-red-600 mt-0.5 mr-3 flex-shrink-0 text-sm sm:text-base" />
-                <span className="text-gray-600 text-sm sm:text-base">
-                <strong>
-                <a href="tel:+919314201111" className="text-gray-600 hover:text-red-600 transition"></a>
-                  +91 93142 01111
-                </strong>
-                </span>
+                {/* Corrected Phone Link */}
+                <a
+                  href="tel:+919314201111"
+                  className="flex items-start text-gray-600 hover:text-red-600 transition-colors"
+                >
+                  <FaPhone className="text-red-600 mt-0.5 mr-3 flex-shrink-0 text-sm sm:text-base" />
+                  <span className="text-sm sm:text-base font-bold">
+                    +91 93142 01111
+                  </span>
+                </a>
               </li>
               <li className="flex items-start">
-                <FaEnvelope className="text-red-600 mt-0.5 mr-3 flex-shrink-0 text-sm sm:text-base" />
-                <span className="text-gray-600 text-sm sm:text-base">
-                  bajdoliyaworkshop2018@gmail.com
-                </span>
+                {/* Corrected Email Link */}
+                <a
+                  href="mailto:bajdoliyaworkshop2018@gmail.com"
+                  className="flex items-start text-gray-600 hover:text-red-600 transition-colors"
+                >
+                  <FaEnvelope className="text-red-600 mt-0.5 mr-3 flex-shrink-0 text-sm sm:text-base" />
+                  <span className="text-sm sm:text-base">
+                    bajdoliyaworkshop2018@gmail.com
+                  </span>
+                </a>
               </li>
               <li className="flex items-start">
                 <FaMapMarkerAlt className="text-red-600 mt-0.5 mr-3 flex-shrink-0 text-sm sm:text-base" />
                 <span className="text-gray-600 text-sm sm:text-base">
-                  B153, Vidhan Shaba Nagar T Point, Dholai, Patrakar Colony, Jaipur - 302020
+                  <a
+                    href="https://www.google.com/maps/place/Bajdoliya+Workshop+(Foam+Car+Wash)/@26.8412456,75.7446854,17z/data=!3m1!4b1!4m6!3m5!1s0x396db5ea05c93e09:0x860a04daca91e807!8m2!3d26.8412456!4d75.7472603!16s%2Fg%2F11j1hgngrh?entry=ttu&g_ep=EgoyMDI1MDgwNi4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-red-600 transition-colors"
+                  >
+                    B153, Vidhan Shaba Nagar T Point, Dholai, Patrakar Colony,
+                    Jaipur - 302020
+                  </a>
                 </span>
               </li>
               <li className="flex items-start">
@@ -181,19 +227,35 @@ export default function Footer() {
                 type="submit"
                 disabled={isSubmitting}
                 className={`w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors text-sm sm:text-base ${
-                  isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                  isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
                 {isSubmitting ? (
                   <span className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <svg
+                      className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
                     </svg>
                     Processing...
                   </span>
                 ) : (
-                  'Subscribe Now'
+                  "Subscribe Now"
                 )}
               </button>
               {message.text && (
@@ -217,7 +279,8 @@ export default function Footer() {
         {/* Bottom Footer */}
         <div className="flex flex-col-reverse sm:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-xs sm:text-sm text-center sm:text-left">
-            © {new Date().getFullYear()} Bajdoliya Workshop. All rights reserved.
+            © {new Date().getFullYear()} Bajdoliya Workshop. All rights
+            reserved.
           </p>
           <div className="text-gray-500 text-xs sm:text-sm flex items-center">
             <span>Created by </span>
