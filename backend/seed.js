@@ -13,12 +13,12 @@ connectDB();
 
 // Clear existing data
 const clearData = async () => {
-  await User.deleteMany();
-  await Admin.deleteMany();
-  await ServiceOffering.deleteMany();
-  await CarService.deleteMany();
-  await Cart.deleteMany();
-  console.log('Existing data cleared');
+  // await User.deleteMany();
+  // await Admin.deleteMany();
+  // await ServiceOffering.deleteMany();
+  // await CarService.deleteMany();
+  // await Cart.deleteMany();
+  // console.log('Existing data cleared');
 };
 
 // Seed data
@@ -28,9 +28,9 @@ const seedData = async () => {
 
     // Create Admin
     const admin = new Admin({
-      email: 'rajyogi1811@gmail.com',
+      email: 'bajdoliyaworkshop2018@gmail.com',
       password: 'Pass1234',
-      name: 'Admin User',
+      name: 'Bajdoliya Workshop',
       tokens: [] // Explicitly initialize tokens array
     });
     await admin.save();
