@@ -1,5 +1,3 @@
-// backend/api/index.js
-
 const express = require('express');
 const connectDB = require('../config/db');
 const cors = require('cors');
@@ -8,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const serverless = require('serverless-http');
 
 // Custom request logger middleware
 const requestLogger = (req, res, next) => {
@@ -20,7 +19,7 @@ const requestLogger = (req, res, next) => {
 };
 
 const app = express();
-app.set('trust proxy', 1); // trust first proxy (e.g., Vercel)
+app.set('trust proxy', 1);
 
 // Security & Performance Middleware
 app.use(helmet());
@@ -33,7 +32,7 @@ app.use(requestLogger);
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 100 });
 app.use(limiter);
 
-// CORS
+// CORS Setup
 const allowedOrigins = [
   'http://localhost:5173',
   'https://bajdoliyaworkshop.vercel.app',
@@ -47,8 +46,15 @@ app.use(cors({
   credentials: true
 }));
 
-// Database connection
-connectDB();
+// Connect to DB before handling requests
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    res.status(500).json({ error: 'Database connection failed' });
+  }
+});
 
 // Routes
 app.get('/', (req, res) => res.send('Server is running'));
@@ -57,7 +63,6 @@ app.use('/api/auth', require('../routes/authRoutes'));
 app.use('/api/user', require('../routes/userRoutes'));
 app.use('/api/admin', require('../routes/adminRoutes'));
 app.use('/api/services', require('../routes/serviceRoutes'));
-// app.use('/api/cart', require('../routes/cartRoutes'));
 app.use('/api/send-message', require('../routes/sendMessageRoute'));
 
 // Error Handling
@@ -66,9 +71,9 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Internal Server Error' });
 });
 
-// The key change for Vercel is to export the app instance.
-// Remove app.listen() as Vercel handles the server for you.
-// module.exports = app;
+// Export serverless function for Vercel
+// module.exports = serverless(app);
+// const serverless = require('serverless-http');
+module.exports = serverless(app); // for Vercel
+module.exports.app = app;         // for local development
 
-const serverless = require('serverless-http');
-module.exports = serverless(app);
