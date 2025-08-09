@@ -68,4 +68,7 @@ app.use((err, req, res, next) => {
 
 // The key change for Vercel is to export the app instance.
 // Remove app.listen() as Vercel handles the server for you.
-module.exports = app;
+// module.exports = app;
+
+const serverless = require('serverless-http');
+module.exports = serverless(app);
