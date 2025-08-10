@@ -76,3 +76,5 @@ if (process.env.VERCEL) {
     console.log(`🚀 Server running locally at http://localhost:${PORT}`);
   });
 }
+
+module.exports = app;
