@@ -4,7 +4,7 @@ const subscriberSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
     trim: true,
     lowercase: true
   },
@@ -18,7 +18,6 @@ const subscriberSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
-
 });
 
 module.exports = mongoose.model('Subscriber', subscriberSchema);
