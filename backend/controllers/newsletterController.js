@@ -1,4 +1,4 @@
-const Subscriber = require('../models/Subscriber');
+const Subscriber = require('../models/subscriber');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
