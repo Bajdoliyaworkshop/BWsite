@@ -1,3 +1,4 @@
+// backend/index.js
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
@@ -6,7 +7,7 @@ const compression = require('compression');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const serverless = require('serverless-http');
-const connectDB = require('../config/db');
+const connectDB = require('./config/db');
 
 // ===== Custom request logger =====
 const requestLogger = (req, res, next) => {
@@ -51,12 +52,12 @@ connectDB();
 
 // ===== Routes =====
 app.get('/', (req, res) => res.send('Server is running'));
-app.use('/api/newsletter', require('../routes/newsletterRoutes'));
-app.use('/api/auth', require('../routes/authRoutes'));
-app.use('/api/user', require('../routes/userRoutes'));
-app.use('/api/admin', require('../routes/adminRoutes'));
-app.use('/api/services', require('../routes/serviceRoutes'));
-app.use('/api/send-message', require('../routes/sendMessageRoute'));
+app.use('/api/newsletter', require('./routes/newsletterRoutes'));
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/user', require('./routes/userRoutes'));
+app.use('/api/admin', require('./routes/adminRoutes'));
+app.use('/api/services', require('./routes/serviceRoutes'));
+app.use('/api/send-message', require('./routes/sendMessageRoute'));
 
 // ===== Error Handling =====
 app.use((err, req, res, next) => {
@@ -64,6 +65,14 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Internal Server Error' });
 });
 
-// ===== Export =====
-module.exports = serverless(app); // For Vercel
-module.exports.app = app;         // For local dev
+// ===== Export for Vercel & Local =====
+if (process.env.VERCEL) {
+  // Running on Vercel as serverless function
+  module.exports = serverless(app);
+} else {
+  // Running locally
+  const PORT = process.env.PORT || 5001;
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running locally at http://localhost:${PORT}`);
+  });
+}
