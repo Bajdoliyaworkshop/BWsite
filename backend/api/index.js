@@ -1,5 +1,4 @@
 const express = require('express');
-const connectDB = require('../config/db');
 const cors = require('cors');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
@@ -7,8 +6,9 @@ const compression = require('compression');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const serverless = require('serverless-http');
+const connectDB = require('../config/db');
 
-// Custom request logger middleware
+// ===== Custom request logger =====
 const requestLogger = (req, res, next) => {
   const start = Date.now();
   res.on('finish', () => {
@@ -21,18 +21,18 @@ const requestLogger = (req, res, next) => {
 const app = express();
 app.set('trust proxy', 1);
 
-// Security & Performance Middleware
+// ===== Security & Performance =====
 app.use(helmet());
 app.use(compression());
 app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
 app.use(requestLogger);
 
-// Rate Limiting
+// ===== Rate Limiting =====
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 100 });
 app.use(limiter);
 
-// CORS Setup
+// ===== CORS =====
 const allowedOrigins = [
   'http://localhost:5173',
   'https://bajdoliyaworkshop.vercel.app',
@@ -46,17 +46,10 @@ app.use(cors({
   credentials: true
 }));
 
-// Connect to DB before handling requests
-app.use(async (req, res, next) => {
-  try {
-    await connectDB();
-    next();
-  } catch (err) {
-    res.status(500).json({ error: 'Database connection failed' });
-  }
-});
+// ===== Connect DB once (serverless keeps it warm) =====
+connectDB();
 
-// Routes
+// ===== Routes =====
 app.get('/', (req, res) => res.send('Server is running'));
 app.use('/api/newsletter', require('../routes/newsletterRoutes'));
 app.use('/api/auth', require('../routes/authRoutes'));
@@ -65,15 +58,12 @@ app.use('/api/admin', require('../routes/adminRoutes'));
 app.use('/api/services', require('../routes/serviceRoutes'));
 app.use('/api/send-message', require('../routes/sendMessageRoute'));
 
-// Error Handling
+// ===== Error Handling =====
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Internal Server Error' });
 });
 
-// Export serverless function for Vercel
-// module.exports = serverless(app);
-// const serverless = require('serverless-http');
-module.exports = serverless(app); // for Vercel
-module.exports.app = app;         // for local development
-
+// ===== Export =====
+module.exports = serverless(app); // For Vercel
+module.exports.app = app;         // For local dev

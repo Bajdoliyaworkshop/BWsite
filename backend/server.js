@@ -1,13 +1,12 @@
-// backend/server.js
 require('dotenv').config();
 const connectDB = require('./config/db');
-const app = require('./api/index').app || require('./api/index'); // Import the Express app from api/index.js
+const { app } = require('./api/index'); // Get plain Express app
 
 const PORT = process.env.PORT || 5001;
 
 (async () => {
   try {
-    await connectDB(); // Connect to MongoDB before starting server
+    await connectDB();
     app.listen(PORT, () => {
       console.log(`🚀 Server running locally at http://localhost:${PORT}`);
     });
