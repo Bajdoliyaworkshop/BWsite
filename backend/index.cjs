@@ -47,9 +47,6 @@ app.use(cors({
   credentials: true
 }));
 
-// ===== Connect DB once (serverless keeps it warm) =====
-connectDB();
-
 // ===== Routes =====
 app.get('/', (req, res) => res.send('Server is running'));
 app.use('/api/newsletter', require('./routes/newsletterRoutes'));
@@ -65,16 +62,27 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Internal Server Error' });
 });
 
-// ===== Export for Vercel & Local =====
-if (process.env.VERCEL) {
-  // Running on Vercel as serverless function
-  module.exports = serverless(app);
-} else {
-  // Running locally
-  const PORT = process.env.PORT || 5001;
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running locally at http://localhost:${PORT}`);
-  });
+// ===== Connect to DB and start server =====
+async function startServer() {
+  try {
+    await connectDB();
+    console.log('Database connected');
+
+    if (!process.env.VERCEL) {
+      const PORT = process.env.PORT || 5001;
+      app.listen(PORT, () => {
+        console.log(`🚀 Server running locally at http://localhost:${PORT}`);
+      });
+    }
+  } catch (err) {
+    console.error('Database connection failed:', err);
+  }
 }
 
-module.exports = app;
+startServer();
+
+if (process.env.VERCEL) {
+  module.exports = serverless(app);
+} else {
+  module.exports = app;
+}
