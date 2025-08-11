@@ -11,7 +11,7 @@ import connectDB from './config/connectDB.js';
 import { requestLogger } from './middleware/requestLogger.js';
 
 const app = express();
-
+const PORT = process.env.PORT || 5001;
 // CORS setup
 const allowedOrigins = [
   'http://localhost:5173',
@@ -53,7 +53,6 @@ app.use((err, req, res, next) => {
 
 // Local dev server only
 if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 5001;
   connectDB().then(() => {
     app.listen(PORT, () => {
       console.log(`Server running locally at http://localhost:${PORT}`);
@@ -63,3 +62,4 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Export for Vercel serverless function
 // export default app;
+export default app;
