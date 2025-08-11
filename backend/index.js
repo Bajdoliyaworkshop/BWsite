@@ -71,3 +71,5 @@ connectDB().then(()=>{
         console.log(`Server running locally at http://localhost:${PORT}`);
     })
 })
+
+export default app;
