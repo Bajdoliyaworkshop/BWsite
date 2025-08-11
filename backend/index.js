@@ -10,7 +10,12 @@ import rateLimit from 'express-rate-limit';
 import connectDB from './config/connectDB.js';
 import { requestLogger } from './middleware/requestLogger.js';
 
+import newsletterRoutes from './routes/newsletterRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 import serviceRoutes from './routes/serviceRoutes.js';
+import sendMessageRoute from './routes/sendMessageRoute.js';
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -46,6 +51,11 @@ app.use(requestLogger);
 
 // Routes
 app.get('/', (req, res) => res.send('Server is running'));
+app.use('/api/newsletter', newsletterRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/send-message', sendMessageRoute);
 app.use('/api/services', serviceRoutes);
 
 // Error handling
