@@ -10,6 +10,8 @@ import rateLimit from 'express-rate-limit';
 import connectDB from './config/connectDB.js';
 import { requestLogger } from './middleware/requestLogger.js';
 
+import serviceRoutes from './routes/serviceRoutes.js';
+
 const app = express();
 const PORT = process.env.PORT || 5001;
 // CORS setup
@@ -44,6 +46,7 @@ app.use(requestLogger);
 
 // Routes
 app.get('/', (req, res) => res.send('Server is running'));
+app.use('/api/services', serviceRoutes);
 
 // Error handling
 app.use((err, req, res, next) => {
