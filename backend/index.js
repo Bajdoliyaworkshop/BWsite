@@ -9,12 +9,12 @@ import compression from 'compression'
 import rateLimit from 'express-rate-limit'
 import connectDB from './config/connectDB.js'
 //import routes
-import newsletterRoutes from './routes/newsletterRoutes.js'
-import authRoutes from './routes/authRoutes.js'
-import userRoutes from './routes/userRoutes.js'
-import adminRoutes from './routes/adminRoutes.js'
-import serviceRoutes from './routes/serviceRoutes.js'
-import sendMessageRoute from './routes/sendMessageRoute.js'
+// import newsletterRoutes from './routes/newsletterRoutes.js'
+// import authRoutes from './routes/authRoutes.js'
+// import userRoutes from './routes/userRoutes.js'
+// import adminRoutes from './routes/adminRoutes.js'
+// import serviceRoutes from './routes/serviceRoutes.js'
+// import sendMessageRoute from './routes/sendMessageRoute.js'
 // Initialize Express app
 const app = express();
 // CORS
@@ -48,15 +48,15 @@ import { requestLogger } from './middleware/requestLogger.js';
 app.use(requestLogger);
 // Routes
 app.get('/', (req, res) => res.send('Server is running'));
-app.use('/api/newsletter', newsletterRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/user', userRoutes);
-app.use('/api/admin', adminRoutes);
-app.use('/api/services', serviceRoutes);
-app.use('/api/send-message', sendMessageRoute);
-app.use((req, res, next) => {
-  res.status(404).json({ message: 'Resource not found' });
-});
+// app.use('/api/newsletter', newsletterRoutes);
+// app.use('/api/auth', authRoutes);
+// app.use('/api/user', userRoutes);
+// app.use('/api/admin', adminRoutes);
+// app.use('/api/services', serviceRoutes);
+// app.use('/api/send-message', sendMessageRoute);
+// app.use((req, res, next) => {
+//   res.status(404).json({ message: 'Resource not found' });
+// });
 // Error handling
 app.use((err, req, res, next) => {
   console.error(err.stack);

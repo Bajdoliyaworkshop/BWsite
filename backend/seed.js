@@ -1,12 +1,12 @@
-require('dotenv').config();
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const User = require('./models/User');
-const Admin = require('./models/Admin');
-const ServiceOffering = require('./models/ServiceOffering');
-const CarService = require('./models/CarService');
-const Cart = require('./models/Cart');
-const connectDB = require('./config/db');
+import 'dotenv/config';
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
+import User from './models/User.js';
+import Admin from './models/Admin.js';
+import ServiceOffering from './models/ServiceOffering.js';
+import CarService from './models/CarService.js';
+import Cart from './models/Cart.js';
+import connectDB from './config/connectDB.js';
 
 // Connect to database
 connectDB();
