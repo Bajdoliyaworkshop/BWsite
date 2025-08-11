@@ -1,7 +1,7 @@
-const CarService = require('../models/CarService');
-const ServiceOffering = require('../models/ServiceOffering');
+import CarService from '../models/CarService.js';
+import ServiceOffering from '../models/ServiceOffering.js';
 
-exports.bookService = async (req, res) => {
+export const bookService = async (req, res) => {
   try {
     const service = new CarService({
       ...req.body,
@@ -28,7 +28,7 @@ exports.bookService = async (req, res) => {
   }
 };
 
-exports.getAllServices = async (req, res) => {
+export const getAllServices = async (req, res) => {
   try {
     const services = await ServiceOffering.find({ isActive: true });
     res.send(services);
@@ -38,7 +38,7 @@ exports.getAllServices = async (req, res) => {
   }
 };
 
-exports.cancelService = async (req, res) => {
+export const cancelService = async (req, res) => {
   try {
     const serviceId = req.params.id;
     const service = await CarService.findById(serviceId);

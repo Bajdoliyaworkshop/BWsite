@@ -1,7 +1,7 @@
-const Cart = require('../models/Cart');
-const ServiceOffering = require('../models/ServiceOffering');
+import Cart from '../models/Cart.js';
+import ServiceOffering from '../models/ServiceOffering.js';
 
-exports.addToCart = async (req, res) => {
+export const addToCart = async (req, res) => {
   try {
     let cart = await Cart.findOne({ user: req.user._id });
     
@@ -29,7 +29,7 @@ exports.addToCart = async (req, res) => {
   }
 };
 
-exports.removeFromCart = async (req, res) => {
+export const removeFromCart = async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user._id });
     
@@ -46,7 +46,7 @@ exports.removeFromCart = async (req, res) => {
   }
 };
 
-exports.getCart = async (req, res) => {
+export const getCart = async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user._id }).populate('items.service');
     res.send(cart || { items: [] });

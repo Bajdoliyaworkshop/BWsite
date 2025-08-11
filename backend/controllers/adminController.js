@@ -1,11 +1,11 @@
-const Admin = require("../models/Admin");
-const User = require("../models/User");
-const CarService = require("../models/CarService");
-const ServiceOffering = require("../models/ServiceOffering");
-const jwt = require("jsonwebtoken");
-const { secret, expiresIn } = require("../config/jwt");
+import Admin from "../models/Admin.js";
+import User from "../models/User.js";
+import CarService from "../models/CarService.js";
+import ServiceOffering from "../models/ServiceOffering.js";
+import jwt from "jsonwebtoken";
+import { secret, expiresIn } from "../config/jwt.js";
 
-exports.adminLogin = async (req, res) => {
+export const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
     const admin = await Admin.findOne({ email });
@@ -47,7 +47,7 @@ exports.adminLogin = async (req, res) => {
   }
 };
 
-exports.adminLogout = async (req, res) => {
+export const adminLogout = async (req, res) => {
   try {
     req.admin.tokens = req.admin.tokens.filter((token) => {
       return token.token !== req.token;
@@ -59,7 +59,7 @@ exports.adminLogout = async (req, res) => {
   }
 };
 
-exports.getAllUsers = async (req, res) => {
+export const getAllUsers = async (req, res) => {
   try {
     // console.log("Admin making request:", req.admin); // Debug log
     const users = await User.find({});
@@ -72,7 +72,7 @@ exports.getAllUsers = async (req, res) => {
 };
 
 //for user details
-exports.getUserDetails = async (req, res) => {
+export const getUserDetails = async (req, res) => {
   try {
     const user = await User.findById(req.params.id)
       .select("-password") // Exclude password
@@ -87,7 +87,7 @@ exports.getUserDetails = async (req, res) => {
   }
 };
 
-exports.getAllBookings = async (req, res) => {
+export const getAllBookings = async (req, res) => {
   try {
     const bookings = await CarService.find({}).populate("user");
     res.send(bookings);
@@ -96,7 +96,7 @@ exports.getAllBookings = async (req, res) => {
   }
 };
 
-exports.updateBookingStatus = async (req, res) => {
+export const updateBookingStatus = async (req, res) => {
   try {
     const booking = await CarService.findByIdAndUpdate(
       req.params.id,
@@ -109,7 +109,7 @@ exports.updateBookingStatus = async (req, res) => {
   }
 };
 
-exports.getAllServices = async (req, res) => {
+export const getAllServices = async (req, res) => {
   try {
     const services = await ServiceOffering.find({});
     res.send(services);
@@ -118,7 +118,7 @@ exports.getAllServices = async (req, res) => {
   }
 };
 
-exports.addService = async (req, res) => {
+export const addService = async (req, res) => {
   try {
     const service = new ServiceOffering(req.body);
     await service.save();
@@ -129,8 +129,7 @@ exports.addService = async (req, res) => {
 };
 
 // for the delete of the service
-
-exports.deleteService = async (req, res) => {
+export const deleteService = async (req, res) => {
   try {
     await ServiceOffering.findByIdAndDelete(req.params.id);
     res.status(200).send({ message: "Service deleted successfully" });

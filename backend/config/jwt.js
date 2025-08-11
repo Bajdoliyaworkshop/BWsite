@@ -1,6 +1,6 @@
-require('dotenv').config();
+import 'dotenv/config';
 
-module.exports = {
-  secret: process.env.JWT_SECRET || 'default-secret',
-  expiresIn: process.env.JWT_EXPIRES_IN || '1d',
-};
+const secret = process.env.JWT_SECRET || 'default-secret';
+const expiresIn = process.env.JWT_EXPIRES_IN || '1d';
+
+export { secret, expiresIn };

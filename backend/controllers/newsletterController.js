@@ -1,6 +1,8 @@
-const Subscriber = require('../models/subscriber');
-const nodemailer = require('nodemailer');
-const crypto = require('crypto');
+// newsletterController.js
+
+import Subscriber from '../models/subscriber.js';
+import nodemailer from 'nodemailer';
+import crypto from 'crypto';
 
 const transporter = nodemailer.createTransport({
     service: process.env.EMAIL_SERVICE || 'gmail',
@@ -10,7 +12,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-exports.subscribe = async (req, res) => {
+export const subscribe = async (req, res) => {
     try {
         const { email } = req.body;
         
@@ -86,7 +88,7 @@ async function sendVerificationEmail(subscriber) {
     await transporter.sendMail(mailOptions);
 }
 
-exports.verify = async (req, res) => {
+export const verify = async (req, res) => {
     try {
         const { token } = req.params;
         

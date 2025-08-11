@@ -1,7 +1,7 @@
-const User = require('../models/User');
-const CarService = require('../models/CarService');
+import User from '../models/User.js';
+import CarService from '../models/CarService.js';
 
-exports.getProfile = async (req, res) => {
+export const getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id);
     res.send(user);
@@ -10,7 +10,7 @@ exports.getProfile = async (req, res) => {
   }
 };
 
-exports.updateProfile = async (req, res) => {
+export const updateProfile = async (req, res) => {
   try {
     const updates = Object.keys(req.body);
     const user = await User.findById(req.user._id);
@@ -24,7 +24,7 @@ exports.updateProfile = async (req, res) => {
   }
 };
 
-exports.addCar = async (req, res) => {
+export const addCar = async (req, res) => {
   try {
     const { model, year, licensePlate } = req.body;
     
@@ -53,7 +53,7 @@ exports.addCar = async (req, res) => {
   }
 };
 
-exports.getMyBookings = async (req, res) => {
+export const getMyBookings = async (req, res) => {
   try {
     const bookings = await CarService.find({ user: req.user._id });
     res.send(bookings);

@@ -1,12 +1,14 @@
-const express = require('express');
+import express from 'express';
+import adminMiddleware from '../middleware/adminMiddleware.js';
+import * as adminController from '../controllers/adminController.js';
+
 const router = express.Router();
-const adminMiddleware = require('../middleware/adminMiddleware');
-const adminController = require('../controllers/adminController');
 
 router.post('/login', adminController.adminLogin);
+router.get('/logout', adminMiddleware, adminController.adminLogout);
+
 router.get('/me', adminMiddleware, (req, res) => {
     res.send(req.admin);
-    router.get('/logout', adminController.adminLogout);
 });
 router.post('/service', adminMiddleware, adminController.addService);
 router.get('/services', adminMiddleware, adminController.getAllServices);
@@ -16,4 +18,4 @@ router.patch('/bookings/:id', adminMiddleware, adminController.updateBookingStat
 router.delete('/services/:id', adminMiddleware, adminController.deleteService);
 router.get('/user/:id', adminMiddleware, adminController.getUserDetails);
 
-module.exports = router;
+export default router;

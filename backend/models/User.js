@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 const UserSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   phone: { type: String, required: true },
-  cars: [{ 
+  cars: [{
     model: { type: String, required: true },
     year: { type: Number },
     licensePlate: { type: String, required: true }
@@ -30,5 +30,4 @@ UserSchema.methods.comparePassword = async function(candidatePassword) {
 UserSchema.index({ 'cars.licensePlate': 1 }, { unique: true, sparse: true });
 
 // 👇 THIS is CRITICAL
-const User = mongoose.model('User', UserSchema);
-module.exports = User;
+export default mongoose.model('User', UserSchema);

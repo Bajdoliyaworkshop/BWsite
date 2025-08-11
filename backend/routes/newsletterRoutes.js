@@ -1,8 +1,10 @@
-const express = require('express');
-const router = express.Router();
-const { subscribe, verify } = require('../controllers/newsletterController');
+import express from 'express';
+import { Router } from 'express';
+import { subscribe, verify } from '../controllers/newsletterController.js';
 
-router.post('/', subscribe);
-router.get('/verify/:token', verify);
+const newsletterRoutes = Router()
 
-module.exports = router;
+newsletterRoutes.post('/', subscribe);
+newsletterRoutes.get('/verify/:token', verify);
+
+export default newsletterRoutes;

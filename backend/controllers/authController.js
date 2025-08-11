@@ -1,8 +1,8 @@
-const User = require("../models/User");
-const jwt = require("jsonwebtoken");
-const { secret, expiresIn } = require("../config/jwt");
-const sendEmail = require("../utils/emailSender");
-const bcrypt = require("bcryptjs"); // Using bcryptjs instead of bcrypt
+import User from "../models/User.js";
+import jwt from "jsonwebtoken";
+import { secret, expiresIn } from "../config/jwt.js";
+import sendEmail from "../utils/emailSender.js";
+import bcrypt from "bcryptjs"; // Using bcryptjs instead of bcrypt
 
 // Helper function for error responses
 const errorResponse = (res, status, message) => {
@@ -12,7 +12,7 @@ const errorResponse = (res, status, message) => {
   });
 };
 
-exports.register = async (req, res) => {
+export const register = async (req, res) => {
   try {
     const { email, password } = req.body;
     
@@ -46,7 +46,7 @@ exports.register = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -82,7 +82,7 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.forgotPassword = async (req, res) => {
+export const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
     
@@ -119,7 +119,7 @@ exports.forgotPassword = async (req, res) => {
   }
 };
 
-exports.resetPassword = async (req, res) => {
+export const resetPassword = async (req, res) => {
   try {
     const { token } = req.params;
     const { password } = req.body;

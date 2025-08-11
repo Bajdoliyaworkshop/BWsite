@@ -1,6 +1,6 @@
-const SendMessageModel = require("../models/SendMessage.js");
+import SendMessageModel from '../models/SendMessage.js';
 
-exports.sendMessage = async (req, res) => {
+export const sendMessage = async (req, res) => {
   try {
     const { name, email, message } = req.body;
     // console.log("Received message:", { name, email, message });

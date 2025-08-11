@@ -1,10 +1,10 @@
-const express = require('express');
-const router = express.Router();
-const authController = require('../controllers/authController');
-const authMiddleware = require('../middleware/authMiddleware');
+import express from 'express'
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
+import * as authController from '../controllers/authController.js';
+import * as authMiddleware from '../middleware/authMiddleware.js';
 
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const router = express.Router();
 
 router.post('/register', authController.register);
 router.post('/login', authController.login);
@@ -65,4 +65,5 @@ router.post('/refresh', async (req, res) => {
   }
 });
 
-module.exports = router;
+// Use 'export default' to export the router
+export default router;
