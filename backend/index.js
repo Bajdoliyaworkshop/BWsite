@@ -55,14 +55,19 @@ app.use((err, req, res, next) => {
 });
 
 // Local dev server only
-if (process.env.NODE_ENV !== 'production') {
-  connectDB().then(() => {
+// current local dev server block with:
+const startServer = async () => {
+  try {
+    await connectDB();
     app.listen(PORT, () => {
-      console.log(`Server running locally at http://localhost:${PORT}`);
+      console.log(`Server running on port ${PORT}`);
     });
-  });
-}
+  } catch (error) {
+    console.error('Failed to start server:', error);
+  }
+};
 
+// Start server in all environments
+startServer();
 // Export for Vercel serverless function
-// export default app;
 export default app;

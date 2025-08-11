@@ -30,10 +30,12 @@ export const bookService = async (req, res) => {
 
 export const getAllServices = async (req, res) => {
   try {
+    console.log('Fetching services...'); // Add logging
     const services = await ServiceOffering.find({ isActive: true });
+    console.log('Services found:', services.length); // Add logging
     res.send(services);
-    
   } catch (err) {
+    console.error('Error fetching services:', err); // Add detailed error logging
     res.status(500).send(err);
   }
 };
