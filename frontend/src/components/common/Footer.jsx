@@ -97,7 +97,7 @@ export default function Footer() {
                 <FaWhatsapp className="text-lg sm:text-2xl" />
               </a>
               <a
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/bajdoliya_workshop"
                 className="text-gray-600 hover:text-red-600 transition-colors"
               >
                 <FaInstagram className="text-lg sm:text-2xl" />

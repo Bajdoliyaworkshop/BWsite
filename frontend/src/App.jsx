@@ -1,3 +1,4 @@
+import ScrollToTop from './components/common/ScrollToTop';
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ToastContainer } from "react-toastify";
@@ -53,6 +54,7 @@ function App() {
         </Routes>
 
         <main className="flex-grow">
+        <ScrollToTop />
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
@@ -90,6 +92,7 @@ function App() {
               </div>
             } /> */}
           </Routes>
+        
         </main>
 
         {/* Conditional rendering for Footer */}

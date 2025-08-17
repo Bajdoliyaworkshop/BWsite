@@ -313,7 +313,7 @@ const Contact = () => {
                   {[
                     { icon: <FaFacebook />, color: "hover:text-red-600", href: "https://www.facebook.com/" },
                     { icon: <FaWhatsapp />, color: "hover:text-red-600", href: "https://wa.me/919314201111" },
-                    { icon: <FaInstagram />, color: "hover:text-red-600", href: "https://www.instagram.com/" },
+                    { icon: <FaInstagram />, color: "hover:text-red-600", href: "https://www.instagram.com/bajdoliya_workshop" },
                   ].map((social, index) => (
                     <motion.a
                       key={index}

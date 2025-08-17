@@ -30,7 +30,7 @@ export default function UpperNavbar() {
           <a href="https://wa.me/919314201111" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">
             <FaWhatsapp className="text-lg" />
           </a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">
+          <a href="https://www.instagram.com/bajdoliya_workshop" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">
             <FaInstagram className="text-lg" />
           </a>
         </div>
