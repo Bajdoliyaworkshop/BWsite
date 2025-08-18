@@ -22,6 +22,8 @@ const PORT = process.env.PORT || 5001;
 // CORS setup
 const allowedOrigins = [
   'http://localhost:5173',
+  'https://bajdoliyaworkshop.com',
+  'https://www.bajdoliyaworkshop.com',
   'https://bajdoliyaworkshop.vercel.app',
   'https://bajdoliya-workshop.vercel.app',
   'https://car-service-silk-nu.vercel.app',
